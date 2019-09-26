@@ -1,0 +1,22 @@
+.Crawler-example {
+  margin-top: 16px;
+}
+
+.Crawler-form {
+  position: relative;
+}
+
+.Crawler-submit {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.Crawler-stats {
+  width: 160px;
+  float: right;
+}
+
+.Crawler-log {
+  margin-right: 192px;
+}

@@ -1,0 +1,12 @@
+.CrawlerStats {
+  margin-top: 32px;
+}
+
+.CrawlerStats-header {
+  padding: 4px 0;
+  font-weight: 700;
+}
+
+.CrawlerStats-item {
+  padding: 4px 0;
+}

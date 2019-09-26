@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - web-root:/var/www/html
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    depends_on:
+      - webserver
+    command: certonly --webroot --webroot-path=/var/www/html --email hello@kbychkov.com --agree-tos --no-eff-email --force-renewal -d simplecrawler.app
+
+  webserver:
+    image: nginx:mainline-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-conf:/etc/nginx/conf.d
+      - web-root:/var/www/html
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    depends_on:
+      - app
+    networks:
+      - app-network
+
+  app:
+    build: .
+    image: simplecrawler
+    depends_on:
+      - mongodb
+    container_name: simplecrawler
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3030
+      - DATABASE_URL=mongodb://mongodb:27017/simplecrawler
+    ports:
+      - "3030:3030"
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:4.2.0-bionic
+    container_name: mongodb
+    restart: unless-stopped
+    networks:
+      - app-network
+
+volumes:
+  certbot-etc:
+  certbot-var:
+  web-root:
+
+networks:
+  app-network:
+    driver: bridge

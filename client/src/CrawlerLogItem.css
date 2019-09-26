@@ -1,0 +1,30 @@
+.CrawlerLogItem {
+  position: relative;
+  padding: 4px 0;
+  overflow: hidden;
+}
+
+.CrawlerLogItem-url::after {
+  position: absolute;
+  margin-left: 1em;
+  content: '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .';
+  white-space: nowrap;
+  color: rgba(0, 0, 0, .6);
+}
+
+.CrawlerLogItem-code {
+  position: absolute;
+  bottom: 4px;
+  right: 0;
+  padding-left: .8em;
+  background: #fff;
+}
+
+.CrawlerLogItem-code--2xx {
+  color: #8BC34A;
+}
+
+.CrawlerLogItem-code--5xx {
+  color: #F44336;
+  font-weight: 700;
+}

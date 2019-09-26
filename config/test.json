@@ -1,0 +1,4 @@
+{
+  "public": "../test/assets",
+  "mongodb": "mongodb://localhost:27017/simplecrawlerapp-test"
+}
