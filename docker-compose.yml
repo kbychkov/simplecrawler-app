@@ -49,6 +49,8 @@ services:
     image: mongo:4.2.0-bionic
     container_name: mongodb
     restart: unless-stopped
+    volumes:
+      - dbdata:/data/db
     networks:
       - app-network
 
@@ -56,6 +58,7 @@ volumes:
   certbot-etc:
   certbot-var:
   web-root:
+  dbdata:
 
 networks:
   app-network:
