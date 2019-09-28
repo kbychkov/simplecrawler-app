@@ -4,7 +4,7 @@ const io = require('socket.io-client');
 const AppServer = require('./fixtures/appserver');
 const app = require('../server/app');
 
-describe.only('Feathers application tests', () => {
+describe('Feathers application tests', () => {
   let appServer;
 
   before(async () => {
