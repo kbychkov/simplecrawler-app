@@ -1,5 +1,10 @@
 # simplecrawler-app
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/kbychkov/simplecrawler-app)
+[![Travis (.org)](https://img.shields.io/travis/kbychkov/simplecrawler-app.svg)](https://travis-ci.com/kbychkov/simplecrawler-app)
+[![Dependency Status](https://img.shields.io/david/kbychkov/simplecrawler-app.svg)](https://david-dm.org/kbychkov/simplecrawler-app)
+[![devDependency Status](https://img.shields.io/david/dev/kbychkov/simplecrawler-app.svg)](https://david-dm.org/kbychkov/simplecrawler-app?type=dev)
+
 The GUI for [Simplecrawler](https://github.com/simplecrawler/simplecrawler) powered by [MongoDB queue](https://github.com/kbychkov/simplecrawler-mongo-queue). This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
 
 ## Getting started
