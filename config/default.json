@@ -6,5 +6,27 @@
     "default": 10,
     "max": 50
   },
-  "mongodb": "mongodb://localhost:27017/simplecrawlerapp"
+  "mongodb": "mongodb://localhost:27017/simplecrawlerapp",
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "1cP0mX3NsiutJ2AYX8u1vBZVgQg=",
+    "authStrategies": [
+      "jwt",
+      "local"
+    ],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  }
 }
