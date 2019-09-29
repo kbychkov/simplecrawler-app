@@ -8,12 +8,29 @@
 
 The GUI for [Simplecrawler](https://github.com/simplecrawler/simplecrawler) powered by [MongoDB queue](https://github.com/kbychkov/simplecrawler-mongo-queue). This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
 
-## Getting started
+## Development Environment
 
-`npm start` - build the client application and start the server.  
-`npm run client` - start the client application in development mode.  
-`npm run server` - start the server in development mode.  
-`npm run dev` - both the previous commands in one.  
+Make sure you have [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.com/download-center/community) installed. Then install dependencies from the project folder:
+
+```bash
+$ npm install
+```
+
+Use the following commands to run the project:
+
+```bash
+# build the client application and start the server
+$ npm start
+
+# start the client application in development mode
+$ npm run client
+
+# start the server in development mode
+$ npm run server
+
+# both the previous commands in one
+$ npm run dev
+```
 
 ## License
 
