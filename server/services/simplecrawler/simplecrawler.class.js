@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const Simplecrawler = require('simplecrawler');
 const MongoQueue = require('simplecrawler-mongo-queue');
+const { version } = require('../../../package.json');
 
 class Service {
   constructor (options) {
@@ -22,6 +23,7 @@ class Service {
 
     crawler.queue = await MongoQueue.create(this.collection, id);
     crawler.maxDepth = depth;
+    crawler.userAgent = `Simplecrawler/${version} (+https://simplecrawler.app)`;
 
     crawler.on('fetchheaders', queueItem => {
       const data = { ...queueItem, connection };
