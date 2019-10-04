@@ -1,7 +1,30 @@
 .CrawlerLogItem {
   position: relative;
-  padding: 4px 0;
   overflow: hidden;
+}
+
+.CrawlerLogItem-url {
+  position: relative;
+  padding: 6px 0 6px 20px;
+  cursor: pointer;
+}
+
+.CrawlerLogItem-url::before {
+  display: block;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 7px;
+  left: 0;
+  background: url('data:image/svg+xml;utf8,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 7.5H0M7.5 0V15" stroke="black"/></svg>');
+  content: '';
+  opacity: .6;
+  transition: transform .5s;
+}
+
+.CrawlerLogItem--open .CrawlerLogItem-url::before {
+  transform: rotate(135deg);
+  transition: transform .5s;
 }
 
 .CrawlerLogItem-url::after {
@@ -14,7 +37,7 @@
 
 .CrawlerLogItem-code {
   position: absolute;
-  bottom: 4px;
+  top: 4px;
   right: 0;
   padding-left: .8em;
   background: #fff;
@@ -27,4 +50,38 @@
 .CrawlerLogItem-code--5xx {
   color: #F44336;
   font-weight: 700;
+}
+
+.CrawlerLogItem--open .CrawlerLogItem-details {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 4px 5em 8px 20px;
+}
+
+.CrawlerLogItem-details {
+  display: none;
+}
+
+.CrawlerLogItem-detailsTitle {
+  width: 6em;
+  padding: 2px 0;
+  font-weight: 700;
+}
+
+.CrawlerLogItem-detailsData {
+  width: calc(100% - 6em);
+  margin: 0;
+  padding: 2px 0;
+}
+
+.CrawlerLogItem-headers {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.CrawlerLogItem-headers > li > span {
+  color: rgba(0, 0, 0, .6);
+  white-space: nowrap;
 }
