@@ -1,3 +1,14 @@
 .TextInput {
   width: 100%;
+  height: 36px;
+  padding: 11px 12px 9px 12px;
+  border: none;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, .06);
+  color: rgba(0, 0, 0, .6);
+}
+
+.TextInput:focus {
+  color: rgba(0, 0, 0, .87);
+  outline: none;
 }

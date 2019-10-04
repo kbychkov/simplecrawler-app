@@ -29,26 +29,30 @@
 
 .CrawlerLogItem-url::after {
   position: absolute;
-  margin-left: 1em;
+  margin-left: .62em;
   content: '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .';
   white-space: nowrap;
-  color: rgba(0, 0, 0, .6);
+  color: rgba(0, 0, 0, .5);
+}
+
+.CrawlerLogItem-url:hover {
+  color: #000;
 }
 
 .CrawlerLogItem-code {
   position: absolute;
-  top: 4px;
+  top: 6px;
   right: 0;
   padding-left: .8em;
   background: #fff;
 }
 
 .CrawlerLogItem-code--2xx {
-  color: #8BC34A;
+  color: #a5ce37;
 }
 
 .CrawlerLogItem-code--5xx {
-  color: #F44336;
+  color: #e95533;
   font-weight: 700;
 }
 
@@ -61,12 +65,13 @@
 
 .CrawlerLogItem-details {
   display: none;
+  font-size: 14px;
 }
 
 .CrawlerLogItem-detailsTitle {
   width: 6em;
   padding: 2px 0;
-  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .CrawlerLogItem-detailsData {

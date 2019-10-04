@@ -3,6 +3,7 @@ import './Crawler.css';
 import CrawlerLog from './CrawlerLog';
 import CrawlerStats from './CrawlerStats';
 import TextInput from './TextInput';
+import Button from './Button';
 
 import io from 'socket.io-client';
 import socketio from '@feathersjs/socketio-client';
@@ -58,16 +59,20 @@ export default class Crawler extends Component {
       <div className="Crawler">
         <form className="Crawler-form" onSubmit={this.handleSubmit}>
           <TextInput onUpdate={this.handleQueryChange} />
-          <button className="Crawler-submit" type="submit">Start</button>
+          <div className="Crawler-submit">
+            <Button type="submit">start</Button>
+          </div>
         </form>
         <div className="Crawler-example">
           <strong>Example:</strong> http://example.com depth:2
         </div>
-        <div className="Crawler-stats">
-          <CrawlerStats data={this.state.log} />
-        </div>
-        <div className="Crawler-log">
-          <CrawlerLog data={this.state.log} />
+        <div className="Crawler-container">
+          <div className="Crawler-log">
+            <CrawlerLog data={this.state.log} />
+          </div>
+          <div className="Crawler-stats">
+            <CrawlerStats data={this.state.log} />
+          </div>
         </div>
       </div>
     );

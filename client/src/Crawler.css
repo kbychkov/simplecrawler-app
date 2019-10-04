@@ -1,5 +1,6 @@
 .Crawler-example {
-  margin-top: 16px;
+  margin-top: 8px;
+  font-size: 14px;
 }
 
 .Crawler-form {
@@ -12,11 +13,18 @@
   right: 0;
 }
 
+.Crawler-container {
+  display: flex;
+}
+
 .Crawler-stats {
-  width: 160px;
-  float: right;
+  position: sticky;
+  top: 0;
+  margin-left: 32px;
+  flex: 0 0 102px;
+  align-self: flex-start;
 }
 
 .Crawler-log {
-  margin-right: 192px;
+  flex-grow: 1;
 }

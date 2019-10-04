@@ -17,7 +17,7 @@ export default class CrawlerStats extends Component {
     return (
       <div className="CrawlerStats">
         <div className="CrawlerStats-header">
-          Crawl Stats
+          Stats:
         </div>
         <div className="CrawlerStats-item">
           2xx - {this.countItems('2xx')}

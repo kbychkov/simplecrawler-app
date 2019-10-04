@@ -1,10 +1,6 @@
 .Header {
   position: relative;
-  margin-bottom: 16px;
-  padding: 16px 0;
-}
-
-.Header-logo {
+  margin-bottom: 32px;
 }
 
 .Header-text {
@@ -13,6 +9,6 @@
 
 .Header-github {
   position: absolute;
-  top: 16px;
+  top: 0;
   right: 0;
 }

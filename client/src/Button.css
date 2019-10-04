@@ -1,0 +1,12 @@
+.Button {
+  height: 36px;
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+  background: #333;
+  color: #fff;
+}
+
+.Button:focus {
+  outline: none;
+}
