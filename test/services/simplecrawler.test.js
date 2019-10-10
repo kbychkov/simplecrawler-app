@@ -7,6 +7,9 @@ const {TestServer} = require('@pptr/testserver');
 const AppServer = require('../fixtures/appserver');
 const io = require('socket.io-client');
 
+const discover = require('../../server/services/simplecrawler/discover');
+const fs = require('fs');
+
 describe('\'simplecrawler\' service', () => {
   let appServer, testServer;
 
@@ -67,5 +70,38 @@ describe('\'simplecrawler\' service', () => {
     });
 
     client1.emit('create', 'api/crawlers', { url: 'http://localhost:8000' });
+  });
+});
+
+describe('discover resources', () => {
+  it('extracts all links from HTML', () => {
+    const buffer = fs.readFileSync('test/assets/discover.html', 'utf8');
+    const queueItem = {
+      stateData: {
+        contentType: 'text/html'
+      }
+    };
+    const result = discover(buffer, queueItem);
+
+    assert.ok(Array.isArray(result));
+    assert.equal(result.length, 5);
+    assert.equal(result[0], 'main.css');
+    assert.equal(result[1], 'main.js');
+    assert.equal(result[2], 'myfile.html');
+    assert.equal(result[3], 'index.html');
+    assert.equal(result[4], 'image.jpg');
+  });
+
+  it('extracts all links from XML', () => {
+    const buffer = fs.readFileSync('test/assets/sitemap.xml', 'utf8');
+    const queueItem = {
+      stateData: {
+        contentType: 'text/xml'
+      }
+    };
+    const result = discover(buffer, queueItem);
+
+    assert.ok(Array.isArray(result));
+    assert.equal(result[0], 'http://localhost:3030');
   });
 });
