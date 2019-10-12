@@ -1,6 +1,6 @@
 const assert = require('assert');
 const feathers = require('@feathersjs/feathers');
-const createCrawler = require('../../server/hooks/create-crawler');
+const hooks = require('../../server/services/crawlers/crawlers.hooks');
 
 describe('\'create-crawler\' hook', () => {
   let app;
@@ -14,9 +14,7 @@ describe('\'create-crawler\' hook', () => {
       }
     });
 
-    app.service('dummy').hooks({
-      before: createCrawler()
-    });
+    app.service('dummy').hooks(hooks);
   });
 
   it('throws an error when no URL specified', async () => {
@@ -111,7 +109,7 @@ describe('\'create-crawler\' hook', () => {
     const params = { url: 'http://example.com' };
     const result = await app.service('dummy').create(params);
 
-    assert.ok(result._id);
+    assert.ok(result.id);
     assert.ok(result.url);
     assert.ok(result.depth !== undefined);
     assert.ok(result.created_at instanceof Date);

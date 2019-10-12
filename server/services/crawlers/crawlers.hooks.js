@@ -6,7 +6,7 @@ module.exports = {
     all: [],
     find: [disallow('external')],
     get: [],
-    create: [createCrawler()],
+    create: [createCrawler(), setNow('created_at', 'updated_at')],
     update: [disallow('external'), setNow('updated_at')],
     patch: [disallow('external'), setNow('updated_at')],
     remove: [disallow('external')]
@@ -24,7 +24,8 @@ module.exports = {
       ({ app, result, params }) => {
         if (!app.get('isCrawlerDisabled')) {
           const connection = params.connection;
-          app.service('simplecrawler').create(result, { connection });
+          const simplecrawler = app.service('simplecrawler');
+          if (simplecrawler) simplecrawler.create(result, { connection });
         }
       }
     ],
