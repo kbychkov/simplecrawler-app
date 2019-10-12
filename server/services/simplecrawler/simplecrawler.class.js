@@ -17,12 +17,12 @@ class Service {
   }
 
   async create (data, params) {
-    const { id, url, depth } = data;
+    const { id, url, depth, queue_id } = data;
     const { connection } = params;
 
     const crawler = new Simplecrawler(url);
 
-    crawler.queue = await MongoQueue.create(this.collection, id);
+    crawler.queue = await MongoQueue.create(this.collection, queue_id);
     crawler.maxDepth = depth;
     crawler.userAgent = `Simplecrawler/${version} (+https://simplecrawler.app)`;
     crawler.discoverResources = discover;

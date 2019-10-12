@@ -34,9 +34,9 @@ module.exports = function (options = {}) {
     }
 
     context.data = {
-      _id: shortid.generate(),
       url: data.url,
       depth: data.depth,
+      queue_id: shortid.generate(),
       status: 'pending'
     };
 

@@ -1,5 +1,4 @@
 const assert = require('assert');
-const shortid = require('shortid');
 const app = require('../../server/app');
 
 describe('\'crawlers\' service', () => {
@@ -64,7 +63,6 @@ describe('\'crawlers\' service', () => {
     });
 
     assert.ok(result.id, 'id undefined');
-    assert.ok(shortid.isValid(result.id), 'Invalid shortid');
   });
 
   it('discards `_id` in the response', async () => {

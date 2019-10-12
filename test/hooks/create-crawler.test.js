@@ -1,6 +1,7 @@
 const assert = require('assert');
 const feathers = require('@feathersjs/feathers');
 const hooks = require('../../server/services/crawlers/crawlers.hooks');
+const shortid = require('shortid');
 
 describe('\'create-crawler\' hook', () => {
   let app;
@@ -109,9 +110,9 @@ describe('\'create-crawler\' hook', () => {
     const params = { url: 'http://example.com' };
     const result = await app.service('dummy').create(params);
 
-    assert.ok(result.id);
     assert.ok(result.url);
     assert.ok(result.depth !== undefined);
+    assert.ok(shortid.isValid(result.queue_id));
     assert.ok(result.created_at instanceof Date);
     assert.ok(result.updated_at instanceof Date);
     assert.ok(result.status === 'pending');
