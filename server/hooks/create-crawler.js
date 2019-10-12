@@ -39,7 +39,8 @@ module.exports = function (options = {}) {
       url: data.url,
       depth: data.depth,
       created_at: now,
-      updated_at: now
+      updated_at: now,
+      status: 'pending'
     };
 
     return context;

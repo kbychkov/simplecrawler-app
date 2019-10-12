@@ -116,5 +116,6 @@ describe('\'create-crawler\' hook', () => {
     assert.ok(result.depth !== undefined);
     assert.ok(result.created_at instanceof Date);
     assert.ok(result.updated_at instanceof Date);
+    assert.ok(result.status === 'pending');
   });
 });

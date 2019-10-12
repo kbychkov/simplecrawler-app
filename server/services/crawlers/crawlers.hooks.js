@@ -1,5 +1,5 @@
 const createCrawler = require('../../hooks/create-crawler');
-const { alterItems, disallow } = require('feathers-hooks-common');
+const { alterItems, disallow, setNow } = require('feathers-hooks-common');
 
 module.exports = {
   before: {
@@ -7,8 +7,8 @@ module.exports = {
     find: [disallow('external')],
     get: [],
     create: [createCrawler()],
-    update: [disallow('external')],
-    patch: [disallow('external')],
+    update: [disallow('external'), setNow('updated_at')],
+    patch: [disallow('external'), setNow('updated_at')],
     remove: [disallow('external')]
   },
 

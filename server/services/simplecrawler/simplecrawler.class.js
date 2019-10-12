@@ -27,14 +27,23 @@ class Service {
     crawler.userAgent = `Simplecrawler/${version} (+https://simplecrawler.app)`;
     crawler.discoverResources = discover;
 
+    crawler.on('crawlstart', async () => {
+      await this.app.service('api/crawlers').patch(id, {
+        status: 'in_progress'
+      });
+    });
+
     crawler.on('fetchheaders', queueItem => {
       const data = { ...queueItem, connection };
       this.emit('fetchheaders', data);
     });
 
-    crawler.on('complete', () => {
+    crawler.on('complete', async () => {
       const data = { connection };
       this.emit('complete', data);
+      await this.app.service('api/crawlers').patch(id, {
+        status: 'completed'
+      });
     });
 
     crawler.start();
