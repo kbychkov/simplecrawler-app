@@ -42,7 +42,8 @@ class Service {
       const data = { connection };
       this.emit('complete', data);
       await this.app.service('api/crawlers').patch(id, {
-        status: 'completed'
+        status: 'completed',
+        finished_at: new Date()
       });
     });
 
