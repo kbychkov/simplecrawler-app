@@ -6,6 +6,7 @@ const shortid = require('shortid');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
+    const now = new Date();
     const defaults = {
       depth: 0
     };
@@ -36,7 +37,9 @@ module.exports = function (options = {}) {
     context.data = {
       _id: shortid.generate(),
       url: data.url,
-      depth: data.depth
+      depth: data.depth,
+      created_at: now,
+      updated_at: now
     };
 
     return context;
