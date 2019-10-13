@@ -7,6 +7,8 @@
   position: relative;
   padding: 6px 0 6px 20px;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .CrawlerLogItem-url::before {
@@ -43,8 +45,8 @@
   position: absolute;
   top: 6px;
   right: 0;
-  padding-left: .8em;
-  background: #fff;
+  padding-left: 30px;
+  background: linear-gradient(90deg, transparent, #fff 10px);
 }
 
 .CrawlerLogItem-code--2xx {
