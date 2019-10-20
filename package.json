@@ -38,7 +38,7 @@
     "server": "nodemon --watch server server/",
     "dev": "concurrently --kill-others \"npm:server\" \"npm:client\"",
     "start": "cd client && npm run build && cd .. && node server/",
-    "mocha": "cross-env NODE_ENV=test mocha test/ --recursive --exit --timeout 5000",
+    "mocha": "cross-env NODE_ENV=test mocha test/ --recursive --exit --timeout 10000",
     "update-version": "node -e \"console.log('module.exports = \\'' + require('./package.json').version + '\\';')\" > client/src/version.js",
     "release": "standard-version --commit-all"
   },
@@ -66,7 +66,7 @@
     "serve-favicon": "^2.5.0",
     "shortid": "^2.2.15",
     "simplecrawler": "^1.1.8",
-    "simplecrawler-mongo-queue": "^1.0.0",
+    "simplecrawler-mongo-queue": "^1.0.1",
     "validator": "^11.1.0",
     "winston": "^3.2.1"
   },

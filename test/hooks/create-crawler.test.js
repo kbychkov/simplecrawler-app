@@ -99,6 +99,30 @@ describe('\'create-crawler\' hook', () => {
     assert.equal(result.depth, 1);
   });
 
+  it('accepts `limit` parameter', async () => {
+    const params = { url: 'http://example.com', limit: 1 };
+    const result = await app.service('dummy').create(params);
+
+    assert.equal(result.limit, 1);
+  });
+
+  it('throws an error when negative limit', async () => {
+    try {
+      const params = { url: 'http://example.com', limit: -1 };
+      await app.service('dummy').create(params);
+      assert.ok(false, 'Should never get here');
+    } catch (e) {
+      assert.equal(e.message, 'Limit should be a positive number.');
+    }
+  });
+
+  it('recognizes `limit` in query', async () => {
+    const query = 'http://example.com limit:1';
+    const result = await app.service('dummy').create({ query });
+
+    assert.equal(result.limit, 1);
+  });
+
   it('drops any irrelevant parameters', async () => {
     const params = { url: 'http://example.com', outsider: true };
     const result = await app.service('dummy').create(params);

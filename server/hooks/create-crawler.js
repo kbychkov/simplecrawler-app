@@ -7,13 +7,14 @@ const shortid = require('shortid');
 module.exports = function (options = {}) {
   return async context => {
     const defaults = {
-      depth: 0
+      depth: 0,
+      limit: 0
     };
     const data = Object.assign({}, defaults, context.data);
 
     if (data.query) {
       const options = {
-        keywords: ['depth']
+        keywords: ['depth', 'limit']
       };
 
       const parsed = searchQuery.parse(data.query, options);
@@ -22,6 +23,10 @@ module.exports = function (options = {}) {
 
       if (parsed.depth) {
         data.depth = parseInt(parsed.depth, 10);
+      }
+
+      if (parsed.limit) {
+        data.limit = parseInt(parsed.limit, 10);
       }
     }
 
@@ -33,9 +38,14 @@ module.exports = function (options = {}) {
       throw new errors.BadRequest('Depth should be a positive number.');
     }
 
+    if (!isInt(data.limit + '', { min: 0 })) {
+      throw new errors.BadRequest('Limit should be a positive number.');
+    }
+
     context.data = {
       url: data.url,
       depth: data.depth,
+      limit: data.limit,
       queue_id: shortid.generate(),
       status: 'pending'
     };

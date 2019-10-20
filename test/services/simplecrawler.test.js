@@ -71,6 +71,22 @@ describe('\'simplecrawler\' service', () => {
 
     client1.emit('create', 'api/crawlers', { url: 'http://localhost:8000' });
   });
+
+  it('limits the number of crawled resources', done => {
+    const client = io(appServer.getUrl());
+    let counter = 0;
+
+    client.on('simplecrawler fetchheaders', () => {
+      counter++;
+    });
+
+    client.once('simplecrawler complete', () => {
+      assert.equal(counter, 3);
+      done();
+    });
+
+    client.emit('create', 'api/crawlers', { url: 'http://localhost:8000/limit.html', limit: 3 });
+  });
 });
 
 describe('discover resources', () => {

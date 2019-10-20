@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const Simplecrawler = require('simplecrawler');
-const MongoQueue = require('simplecrawler-mongo-queue');
+const Queue = require('./queue');
 const discover = require('./discover');
 const { version } = require('../../../package.json');
 
@@ -17,15 +17,21 @@ class Service {
   }
 
   async create (data, params) {
-    const { id, url, depth, queue_id } = data;
+    const { id, url, depth, limit, queue_id } = data;
     const { connection } = params;
 
     const crawler = new Simplecrawler(url);
 
-    crawler.queue = await MongoQueue.create(this.collection, queue_id);
+    crawler.queue = await Queue.create(this.collection, queue_id);
     crawler.maxDepth = depth;
     crawler.userAgent = `Simplecrawler/${version} (+https://simplecrawler.app)`;
     crawler.discoverResources = discover;
+
+    crawler.addFetchCondition((queueItem, referrerQueueItem, callback) => {
+      crawler.queue.getLength((err, length) => {
+        callback(null, !(length >= limit));
+      });
+    });
 
     crawler.on('crawlstart', async () => {
       await this.app.service('api/crawlers').patch(id, {
