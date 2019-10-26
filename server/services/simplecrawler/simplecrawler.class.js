@@ -29,7 +29,7 @@ class Service {
 
     crawler.addFetchCondition((queueItem, referrerQueueItem, callback) => {
       crawler.queue.getLength((err, length) => {
-        callback(null, !(length >= limit));
+        callback(null, !(length >= (this.app.get('crawlerLimit') || limit)));
       });
     });
 

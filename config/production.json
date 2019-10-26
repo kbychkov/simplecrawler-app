@@ -1,4 +1,5 @@
 {
   "port": "PORT",
-  "mongodb": "DATABASE_URL"
+  "mongodb": "DATABASE_URL",
+  "crawlerLimit": 10000
 }
