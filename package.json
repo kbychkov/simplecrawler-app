@@ -1,7 +1,7 @@
 {
   "name": "simplecrawler-app",
   "description": "The GUI for Simplecrawler",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://simplecrawler.app",
   "private": true,
   "main": "server",
