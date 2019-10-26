@@ -40,7 +40,8 @@
     "start": "cd client && npm run build && cd .. && node server/",
     "mocha": "cross-env NODE_ENV=test mocha test/ --recursive --exit --timeout 10000",
     "update-version": "node -e \"console.log('module.exports = \\'' + require('./package.json').version + '\\';')\" > client/src/version.js",
-    "release": "standard-version --commit-all"
+    "release": "standard-version --commit-all",
+    "update-app": "docker-compose up -d --no-deps --force-recreate --build app"
   },
   "standard-version": {
     "scripts": {
