@@ -64,7 +64,7 @@ export default class Crawler extends Component {
           </div>
         </form>
         <div className="Crawler-example">
-          <strong>Example:</strong> http://example.com depth:2
+          <strong>Example:</strong> <span title="The initial URL to start crawl">http://example.com</span> <span title="Define a max depth of crawl from the starting page">depth:2</span> <span title="Max number of pages to crawl">limit:10</span>
         </div>
         <div className="Crawler-container">
           <div className="Crawler-log">
