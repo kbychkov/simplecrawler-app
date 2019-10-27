@@ -72,7 +72,9 @@ describe('\'simplecrawler\' service', () => {
     client1.emit('create', 'api/crawlers', { url: 'http://localhost:8000' });
   });
 
-  it('limits the number of crawled resources', done => {
+  it('limits the number of crawled resources by the query', done => {
+    app.set('crawlerLimit', 10000); // emulate production limit
+
     const client = io(appServer.getUrl());
     let counter = 0;
 
@@ -86,6 +88,24 @@ describe('\'simplecrawler\' service', () => {
     });
 
     client.emit('create', 'api/crawlers', { url: 'http://localhost:8000/limit.html', limit: 3 });
+  });
+
+  it('limits the number of crawled resources by the application', done => {
+    app.set('crawlerLimit', 3); // emulate production limit
+
+    const client = io(appServer.getUrl());
+    let counter = 0;
+
+    client.on('simplecrawler fetchheaders', () => {
+      counter++;
+    });
+
+    client.once('simplecrawler complete', () => {
+      assert.equal(counter, 3);
+      done();
+    });
+
+    client.emit('create', 'api/crawlers', { url: 'http://localhost:8000/limit.html' });
   });
 });
 

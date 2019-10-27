@@ -28,8 +28,14 @@ class Service {
     crawler.discoverResources = discover;
 
     crawler.addFetchCondition((queueItem, referrerQueueItem, callback) => {
+      const dataLimit = limit || Infinity;
+      const crawlerLimit = this.app.get('crawlerLimit') || Infinity;
+      const threshold = Math.min(dataLimit, crawlerLimit);
+
+      if (threshold === Infinity) return true;
+
       crawler.queue.getLength((err, length) => {
-        callback(null, !(length >= (this.app.get('crawlerLimit') || limit)));
+        callback(null, !(length >= threshold));
       });
     });
 
