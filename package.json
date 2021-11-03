@@ -68,7 +68,7 @@
     "shortid": "^2.2.15",
     "simplecrawler": "^1.1.8",
     "simplecrawler-mongo-queue": "^1.0.1",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
